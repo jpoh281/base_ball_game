@@ -1,7 +1,7 @@
 class ParseResult {}
 
 class Success implements ParseResult{
-  Success(this.parsedNumbers);
+  const Success(this.parsedNumbers);
 
   final List<int> parsedNumbers;
 }
@@ -9,13 +9,12 @@ class Success implements ParseResult{
 
 class Error implements ParseResult{
 
-  Error(this.message);
+  const Error(this.message);
 
   final String message;
 
   @override
   String toString() {
-    // TODO: implement toString
     return message;
   }
 }

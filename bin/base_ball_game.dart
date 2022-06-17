@@ -1,9 +1,6 @@
-import 'package:base_ball_game/controllers/controller.dart';
-import 'package:base_ball_game/models/game.dart';
+import 'package:base_ball_game/controllers/base_ball_game_controller.dart';
 
 void main(List<String> arguments) async {
-  Game game = Game();
-  Controller controller = Controller(game);
-
-  controller.start();
+  BaseBallGameController controller = BaseBallGameController();
+  controller.play();
 }

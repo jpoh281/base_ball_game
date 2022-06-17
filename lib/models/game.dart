@@ -3,7 +3,20 @@ import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/parse_result.dart';
 
 class Game {
-  Game() {
+  Game();
+
+  // 종료 턴
+  final int endTurn = 20;
+
+  // 현재 게임의 턴
+  int nowTurn = 0;
+
+  bool get checkGameOver => nowTurn == endTurn;
+
+  // 현재 게임의 정답
+  List<int> answers = [];
+
+  settingGame() {
     List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     numbers.shuffle();
     List<int> selectedNumbers = List.empty(growable: true);
@@ -13,18 +26,9 @@ class Game {
     answers = selectedNumbers;
   }
 
-  // 종료턴
-  final int endTurn = 20;
-
-  // 현재 게임의 턴
-  int nowTurn = 0;
-
-  // 현재 게임의 정답
-  List<int> answers = [];
-
   // 정답 체크
   InningResult checkAnswer(Success success) {
-    if (_checkGameOver()) {
+    if (checkGameOver) {
       return Lose();
     }
 
@@ -43,10 +47,6 @@ class Game {
 
     nowTurn++;
     return InningResult.parse(strikes, balls);
-  }
-
-  bool _checkGameOver() {
-    return nowTurn == endTurn;
   }
 
   ParseResult parse(String? answer) {

@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/parse_result.dart';
 
-class Board {
-  const Board();
+class GameBoard {
+  const GameBoard();
 
   void initializeGame() {
     stdout.write('*** HDD의 숫자 야구 ***\n');
@@ -14,11 +13,9 @@ class Board {
     stdout.write('숫자가 설정 되었습니다.\n');
   }
 
-  String? endGame() {
-    stdout.write('*** HDD의 숫자 야구 ***\n');
+  String? askRestart() {
     stdout.write('다시 하려면 y를 입력해 주세요.\n');
     return stdin.readLineSync();
-
   }
 
   String? getAnswer() {
@@ -27,17 +24,17 @@ class Board {
     return stdin.readLineSync();
   }
 
-  printInningResult(InningResult inningResult){
+  void printInningResult(InningResult inningResult) {
     stdout.write(inningResult.toString());
   }
 
-  printParseResult(ParseResult parseResult){
-    if(parseResult is Error){
+  void printParseResult(ParseResult parseResult) {
+    if (parseResult is Error) {
       _error(parseResult);
     }
   }
 
-  _error(Error parseResult){
+  void _error(Error parseResult) {
     stdout.write(parseResult.toString());
   }
 }

@@ -1,7 +1,6 @@
 abstract class InningResult {
   factory InningResult.parse(int strikes, int balls) {
-
-    if(strikes == 3){
+    if (strikes == 3) {
       return Win();
     }
 
@@ -37,7 +36,7 @@ class Win implements InningResult {
 }
 
 class Strike implements InningResult {
-  Strike({required this.strikes});
+  const Strike({required this.strikes});
 
   final int strikes;
 
@@ -48,7 +47,7 @@ class Strike implements InningResult {
 }
 
 class Ball implements InningResult {
-  Ball({required this.balls});
+  const Ball({required this.balls});
 
   final int balls;
 
@@ -59,7 +58,7 @@ class Ball implements InningResult {
 }
 
 class StrikeAndBall implements InningResult {
-  StrikeAndBall({required this.strikes, required this.balls});
+  const StrikeAndBall({required this.strikes, required this.balls});
 
   final int strikes;
   final int balls;
@@ -71,6 +70,8 @@ class StrikeAndBall implements InningResult {
 }
 
 class Out implements InningResult {
+  const Out();
+
   @override
   String toString() {
     return '아웃\n';
@@ -78,7 +79,7 @@ class Out implements InningResult {
 }
 
 class Lose implements InningResult {
-  Lose();
+  const Lose();
 
   @override
   String toString() {
