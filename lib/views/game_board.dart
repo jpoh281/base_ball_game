@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:base_ball_game/constants.dart';
-import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/inning.dart';
 
 class GameBoard {
   const GameBoard();
@@ -43,7 +43,31 @@ class GameBoard {
     return numbers;
   }
 
-  void printInningResult(InningResult inningResult) {
-    stdout.write(inningResult.toString());
+  void printGameOver() {
+    stdout.write('게임에 패배하셨습니다.\n');
+  }
+
+  void printInningResult(Inning inning) {
+    if (inning.isWin) {
+      stdout.write('게임에 승리하셨습니다.\n');
+      return;
+    }
+
+    if (inning.isBall) {
+      stdout.write('${inning.balls} 볼\n');
+      return;
+    }
+
+    if (inning.isStrike) {
+      stdout.write('${inning.strikes} 스트라이크\n');
+      return;
+    }
+
+    if (inning.isStrikeAndBall) {
+      stdout.write('${inning.strikes} 스트라이크 ${inning.balls} 볼\n');
+      return;
+    }
+
+    stdout.write('아웃\n');
   }
 }
