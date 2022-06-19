@@ -1,16 +1,15 @@
-import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/inning.dart';
 
 class Game {
   Game();
 
-  // 종료 턴
-  final int endTurn = 20;
-  // 현재 게임의 턴
-  int nowTurn = 0;
-  bool get checkGameOver => nowTurn == endTurn;
+  bool get checkGameOver => innings.length == maxTurn;
+
 
   // 현재 게임의 정답
   List<int> answers = [];
+  List<Inning> innings = [];
 
   settingGame() {
     List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -23,25 +22,10 @@ class Game {
   }
 
   // 정답 체크
-  InningResult checkAnswer(List<int> numbers) {
-    if (checkGameOver) {
-      return Lose();
-    }
+  Inning playInning(Inning inning) {
+    inning.playBatting(answers);
+    innings.add(inning);
+    return inning;
 
-    int strikes = 0;
-    int balls = 0;
-
-    for (int i = 0; i < answers.length; i++) {
-      if (answers[i] == numbers[i]) {
-        strikes++;
-        continue;
-      }
-      if (answers.contains(numbers[i])) {
-        balls++;
-      }
-    }
-
-    nowTurn++;
-    return InningResult.parse(strikes, balls);
   }
 }
