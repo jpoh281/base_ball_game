@@ -1,5 +1,5 @@
 import 'package:base_ball_game/models/game.dart';
-import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/inning.dart';
 import 'package:base_ball_game/views/game_board.dart';
 
 class BaseBallGameController {
@@ -8,27 +8,29 @@ class BaseBallGameController {
   final GameBoard board = GameBoard();
   final Game game = Game();
 
-  void play() {
+  void initialize() {
     board.initializeGame();
     late String? result;
     do {
       game.settingGame();
-      _doingGame();
+      _playGame();
       result = board.askRestart();
     } while (result == 'y');
   }
 
-  void _doingGame() {
-    InningResult? inningResult;
+  void _playGame() {
+    Inning? inning;
     do {
-      inningResult = _playInning();
-      board.printInningResult(inningResult);
-    } while (inningResult is! Win && inningResult is! Lose);
+      inning = _playInning();
+      board.printInningResult(inning);
+    } while (!game.checkGameOver && !inning.isWin);
   }
 
-  InningResult _playInning() {
+  Inning _playInning() {
     var answer = board.getAnswer();
-    var inningResult = game.checkAnswer(answer);
-    return inningResult;
+    var inning = Inning(answer);
+    game.playInning(inning);
+    return inning;
+
   }
 }
