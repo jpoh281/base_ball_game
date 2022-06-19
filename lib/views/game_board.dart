@@ -43,6 +43,10 @@ class GameBoard {
     return numbers;
   }
 
+  void printGameOver() {
+    stdout.write('게임에 패배하셨습니다.\n');
+  }
+
   void printInningResult(Inning inning) {
     if (inning.isWin) {
       stdout.write('게임에 승리하셨습니다.\n');

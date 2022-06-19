@@ -4,7 +4,7 @@ import 'package:base_ball_game/models/inning.dart';
 class Game {
   Game();
 
-  bool get checkGameOver => innings.length == maxTurn;
+  bool get isGameOver => innings.length == maxTurn;
 
 
   // 현재 게임의 정답
