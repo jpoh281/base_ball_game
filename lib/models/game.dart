@@ -18,6 +18,7 @@ class Game {
     while (selectedNumbers.length < 3) {
       selectedNumbers.add(numbers.removeAt(0));
     }
+    innings = [];
     answers = selectedNumbers;
   }
 
