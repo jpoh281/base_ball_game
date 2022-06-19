@@ -72,6 +72,6 @@ class GameBoard {
   }
 
   void printGameResult(List<Inning> innings){
-    stdout.write('$innings');
+    stdout.write(innings.join());
   }
 }
