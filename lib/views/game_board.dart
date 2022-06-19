@@ -70,4 +70,8 @@ class GameBoard {
 
     stdout.write('아웃\n');
   }
+
+  printGameResult(List<Inning> innings){
+    stdout.write('$innings');
+  }
 }

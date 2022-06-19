@@ -33,4 +33,9 @@ class Inning {
       balls++;
     }
   }
+
+  @override
+  String toString() {
+    return '작성 답: $atBat, 결과: $strikes 스트라이크 $balls 볼\n';
+  }
 }
