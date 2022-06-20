@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:base_ball_game/models/at_bat.dart';
+import 'package:base_ball_game/models/batting_numbers.dart';
 import 'package:base_ball_game/models/inning.dart';
 
 class GameBoard {
@@ -18,14 +18,14 @@ class GameBoard {
     return stdin.readLineSync();
   }
 
-  AtBat getAnswer() {
-    AtBat? atBat;
+  BattingNumbers getAnswer() {
+    BattingNumbers? atBat;
     do {
       stdout.write('숫자 3개를 입력해주세요.\n');
       stdout.write('0 및 공백, 영문자, 특수문자는 전부 무시됩니다.\n');
       var answer = stdin.readLineSync();
       try {
-        atBat = AtBat.fromStdOut(answer);
+        atBat = BattingNumbers.fromStdOut(answer);
       } on FormatException catch (e) {
         stdout.write(e.message);
       }

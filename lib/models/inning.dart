@@ -1,11 +1,11 @@
 import 'package:base_ball_game/constants.dart';
-import 'package:base_ball_game/models/at_bat.dart';
+import 'package:base_ball_game/models/batting_numbers.dart';
 
 class Inning {
   Inning(this.turn, this.atBat);
 
   final int turn;
-  final AtBat atBat;
+  final BattingNumbers atBat;
 
   int strikes = 0;
   int balls = 0;

@@ -1,5 +1,5 @@
 import 'package:base_ball_game/constants.dart';
-import 'package:base_ball_game/models/at_bat.dart';
+import 'package:base_ball_game/models/batting_numbers.dart';
 import 'package:base_ball_game/models/inning.dart';
 
 class Game {
@@ -23,7 +23,7 @@ class Game {
   }
 
   // 정답 체크
-  Inning playInning(AtBat atBat) {
+  Inning playInning(BattingNumbers atBat) {
     var inning = Inning(innings.length+1, atBat);
     inning.playBatting(answers);
     innings.add(inning);
