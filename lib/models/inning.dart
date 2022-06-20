@@ -1,9 +1,10 @@
 import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/at_bat.dart';
 
 class Inning {
   Inning(this.atBat);
 
-  final List<int> atBat;
+  final AtBat atBat;
 
   int strikes = 0;
   int balls = 0;
@@ -25,11 +26,11 @@ class Inning {
   }
 
   void _check(List<int> answers, int i) {
-    if (answers[i] == atBat[i]) {
+    if (answers[i] == atBat.numbers[i]) {
       strikes++;
       return;
     }
-    if (answers.contains(atBat[i])) {
+    if (answers.contains(atBat.numbers[i])) {
       balls++;
     }
   }

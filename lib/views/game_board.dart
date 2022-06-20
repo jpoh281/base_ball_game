@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/at_bat.dart';
 import 'package:base_ball_game/models/inning.dart';
 
 class GameBoard {
@@ -18,29 +18,19 @@ class GameBoard {
     return stdin.readLineSync();
   }
 
-  List<int> getAnswer() {
-    late List<int> numbers;
+  AtBat getAnswer() {
+    AtBat? atBat;
     do {
       stdout.write('숫자 3개를 입력해주세요.\n');
       stdout.write('0 및 공백, 영문자, 특수문자는 전부 무시됩니다.\n');
-      numbers = _parseAnswer(stdin.readLineSync());
-    } while (numbers.length != 3);
-    return numbers;
-  }
-
-  List<int> _parseAnswer(String? answer) {
-    var regResult = rule.allMatches(answer ?? '');
-    if (regResult.length != 3) {
-      stdout.write("숫자를 세개만 입력해 주세요.\n");
-      return [];
-    }
-    var numbers =
-        regResult.map((e) => int.parse(e.group(0).toString())).toList();
-    if (numbers.toSet().length != 3) {
-      stdout.write("중복되는 숫자 없이 입력해 주세요.\n");
-      return [];
-    }
-    return numbers;
+      var answer = stdin.readLineSync();
+      try {
+        atBat = AtBat.fromStdOut(answer);
+      } on FormatException catch (e) {
+        stdout.write(e.message);
+      }
+    } while (atBat == null);
+    return atBat;
   }
 
   void printGameOver() {
@@ -71,7 +61,7 @@ class GameBoard {
     stdout.write('아웃\n');
   }
 
-  printGameResult(List<Inning> innings){
+  printGameResult(List<Inning> innings) {
     stdout.write('$innings');
   }
 }
