@@ -2,8 +2,9 @@ import 'package:base_ball_game/constants.dart';
 import 'package:base_ball_game/models/at_bat.dart';
 
 class Inning {
-  Inning(this.atBat);
+  Inning(this.turn, this.atBat);
 
+  final int turn;
   final AtBat atBat;
 
   int strikes = 0;
@@ -37,6 +38,6 @@ class Inning {
 
   @override
   String toString() {
-    return '작성 답: $atBat, 결과: $strikes 스트라이크 $balls 볼\n';
+    return '$turn턴 작성 답: $atBat, 결과: $strikes 스트라이크 $balls 볼\n';
   }
 }
