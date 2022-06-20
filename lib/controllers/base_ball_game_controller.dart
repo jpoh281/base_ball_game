@@ -25,7 +25,7 @@ class BaseBallGameController {
       board.printInningResult(inningResult);
     } while (!game.isGameOver && !inningResult.isWin);
 
-    if(game.isGameOver){
+    if (game.isGameOver) {
       board.printGameOver();
     }
 
@@ -33,9 +33,7 @@ class BaseBallGameController {
   }
 
   Inning _playInning() {
-    var answer = board.getAnswer();
-    var inning = Inning(answer);
-    game.playInning(inning);
-    return inning;
+    var atBat = board.getAnswer();
+    return game.playInning(atBat);
   }
 }

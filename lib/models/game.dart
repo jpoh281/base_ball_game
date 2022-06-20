@@ -1,4 +1,5 @@
 import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/at_bat.dart';
 import 'package:base_ball_game/models/inning.dart';
 
 class Game {
@@ -11,18 +12,19 @@ class Game {
   List<Inning> innings = [];
 
   void settingGame() {
+    innings = [];
     List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     numbers.shuffle();
     List<int> selectedNumbers = List.empty(growable: true);
     while (selectedNumbers.length < 3) {
       selectedNumbers.add(numbers.removeAt(0));
     }
-    innings = [];
     answers = selectedNumbers;
   }
 
   // 정답 체크
-  Inning playInning(Inning inning) {
+  Inning playInning(AtBat atBat) {
+    var inning = Inning(innings.length+1, atBat);
     inning.playBatting(answers);
     innings.add(inning);
     return inning;
