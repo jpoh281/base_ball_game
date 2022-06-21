@@ -1,5 +1,5 @@
 import 'package:base_ball_game/models/inning_result.dart';
-import 'package:base_ball_game/models/game.dart';
+import 'package:base_ball_game/models/base_ball.dart';
 import 'package:base_ball_game/views/game_board.dart';
 
 class BaseBallGameController {

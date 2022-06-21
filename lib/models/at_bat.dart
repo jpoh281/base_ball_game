@@ -1,12 +1,12 @@
 import 'package:base_ball_game/constants.dart';
-import 'package:base_ball_game/models/answer_numbers.dart';
+import 'package:base_ball_game/models/pitching_numbers.dart';
 import 'package:base_ball_game/models/batting_numbers.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 
 class AtBat {
   AtBat(this.answer, this.batting);
 
-  final AnswerNumbers answer;
+  final PitchingNumbers answer;
   final BattingNumbers batting;
   final InningResult battingResult = InningResult();
 

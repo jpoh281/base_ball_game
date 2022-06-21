@@ -1,9 +1,9 @@
-class AnswerNumbers {
-  AnswerNumbers(this.numbers);
+class PitchingNumbers {
+  PitchingNumbers(this.numbers);
 
   final List<int> numbers;
 
-  factory AnswerNumbers.setNumbers() {
+  factory PitchingNumbers.setNumbers() {
     List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     numbers.shuffle();
     List<int> selectedNumbers = List.empty(growable: true);
@@ -12,6 +12,6 @@ class AnswerNumbers {
     }
     var answers = selectedNumbers;
 
-    return AnswerNumbers(answers);
+    return PitchingNumbers(answers);
   }
 }
