@@ -11,8 +11,7 @@ class Inning {
 
   InningResult play(AnswerNumbers answerNumbers, BattingNumbers battingNumbers) {
     atBat = AtBat(answerNumbers, battingNumbers);
-    var result = atBat.play();
-    return result;
+    return atBat.play();
   }
   
 
