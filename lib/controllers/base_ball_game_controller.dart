@@ -1,12 +1,12 @@
+import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/game.dart';
-import 'package:base_ball_game/models/inning.dart';
 import 'package:base_ball_game/views/game_board.dart';
 
 class BaseBallGameController {
   BaseBallGameController();
 
   final GameBoard board = GameBoard();
-  final Game game = Game();
+  final BaseBall game = BaseBall();
 
   void initialize() {
     board.initializeGame();
@@ -19,22 +19,23 @@ class BaseBallGameController {
   }
 
   void _playGame() {
-    Inning? inning;
+    InningResult? result;
     do {
-      inning = _playInning();
-      board.printInningResult(inning);
-    } while (!game.isGameOver && !inning.isWin);
-
+      result = _playInning();
+      board.printBattingResult(result);
+    } while (!game.isGameOver && !result.isWin);
+    if(result.isWin){
+      board.printGameWin();
+    }
     if (game.isGameOver) {
       board.printGameOver();
     }
-    board.printGameResult(game.innings);
+
+    board.printGameResult(game);
   }
 
-  Inning _playInning() {
-    var answer = board.getAnswer();
-    var inning = Inning(answer);
-    game.playInning(inning);
-    return inning;
+  InningResult _playInning() {
+    var atBat = board.getAnswer();
+    return game.playInning(atBat);
   }
 }

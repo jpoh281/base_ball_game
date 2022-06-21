@@ -1,6 +1,7 @@
 import 'dart:io';
-import 'package:base_ball_game/constants.dart';
-import 'package:base_ball_game/models/inning.dart';
+import 'package:base_ball_game/models/batting_numbers.dart';
+import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/game.dart';
 
 class GameBoard {
   const GameBoard();
@@ -18,60 +19,34 @@ class GameBoard {
     return stdin.readLineSync();
   }
 
-  List<int> getAnswer() {
-    late List<int> numbers;
+  BattingNumbers getAnswer() {
+    BattingNumbers? atBat;
     do {
       stdout.write('숫자 3개를 입력해주세요.\n');
       stdout.write('0 및 공백, 영문자, 특수문자는 전부 무시됩니다.\n');
-      numbers = _parseAnswer(stdin.readLineSync());
-    } while (numbers.length != 3);
-    return numbers;
-  }
-
-  List<int> _parseAnswer(String? answer) {
-    var regResult = rule.allMatches(answer ?? '');
-    if (regResult.length != 3) {
-      stdout.write("숫자를 세개만 입력해 주세요.\n");
-      return [];
-    }
-    var numbers =
-        regResult.map((e) => int.parse(e.group(0).toString())).toList();
-    if (numbers.toSet().length != 3) {
-      stdout.write("중복되는 숫자 없이 입력해 주세요.\n");
-      return [];
-    }
-    return numbers;
-  }
-
-  void printInningResult(Inning inning) {
-    if (inning.isWin) {
-      stdout.write('게임에 승리하셨습니다.\n');
-      return;
-    }
-
-    if (inning.isBall) {
-      stdout.write('${inning.balls} 볼\n');
-      return;
-    }
-
-    if (inning.isStrike) {
-      stdout.write('${inning.strikes} 스트라이크\n');
-      return;
-    }
-
-    if (inning.isStrikeAndBall) {
-      stdout.write('${inning.strikes} 스트라이크 ${inning.balls} 볼\n');
-      return;
-    }
-
-    stdout.write('아웃\n');
+      var answer = stdin.readLineSync();
+      try {
+        atBat = BattingNumbers.fromStdOut(answer);
+      } on FormatException catch (e) {
+        stdout.write(e.message);
+      }
+    } while (atBat == null);
+    return atBat;
   }
 
   void printGameOver() {
     stdout.write('게임에 패배하셨습니다.\n');
   }
 
-  void printGameResult(List<Inning> innings){
-    stdout.write(innings.join());
+  void printGameWin() {
+    stdout.write('게임에 승리하셨습니다.\n');
+  }
+
+  void printBattingResult(InningResult result) {
+    stdout.write(result);
+  }
+
+  printGameResult(BaseBall game) {
+    stdout.write(game);
   }
 }
