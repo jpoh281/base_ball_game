@@ -12,7 +12,7 @@ class BaseBallGameController {
     board.initializeGame();
     late String? result;
     do {
-      game.setGame();
+      game.settingGame();
       _playGame();
       result = board.askRestart();
     } while (result == 'y');
