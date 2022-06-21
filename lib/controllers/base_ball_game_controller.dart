@@ -24,7 +24,7 @@ class BaseBallGameController {
       result = _playInning();
       board.printBattingResult(result);
     } while (!game.isGameOver && !result.isWin);
-    if(result.isWin){
+    if (result.isWin) {
       board.printGameWin();
     }
     if (game.isGameOver) {

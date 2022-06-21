@@ -8,7 +8,7 @@ class BaseBall {
   BaseBall();
 
   // 현재 게임의 정답
-  late PitchingNumbers answerNumbers;
+  late PitchingNumbers pitchingNumbers;
   List<Inning> innings = [];
 
   int get nowInning => innings.length + 1;
@@ -17,13 +17,13 @@ class BaseBall {
 
   void setGame() {
     innings = [];
-    answerNumbers = PitchingNumbers.setNumbers();
+    pitchingNumbers = PitchingNumbers.setNumbers();
   }
 
   InningResult playInning(BattingNumbers battingNumbers) {
     var inning = Inning(nowInning);
     innings.add(inning);
-    return inning.play(answerNumbers, battingNumbers);
+    return inning.play(pitchingNumbers, battingNumbers);
   }
 
   @override

@@ -4,9 +4,9 @@ import 'package:base_ball_game/models/batting_numbers.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 
 class AtBat {
-  AtBat(this.answer, this.batting);
+  AtBat(this.pitching, this.batting);
 
-  final PitchingNumbers answer;
+  final PitchingNumbers pitching;
   final BattingNumbers batting;
   final InningResult battingResult = InningResult();
 
@@ -18,11 +18,11 @@ class AtBat {
   }
 
   void _swing(int i) {
-    if (answer.numbers[i] == batting.numbers[i]) {
+    if (pitching.numbers[i] == batting.numbers[i]) {
       battingResult.strikes++;
       return;
     }
-    if (answer.numbers.contains(batting.numbers[i])) {
+    if (pitching.numbers.contains(batting.numbers[i])) {
       battingResult.balls++;
     }
   }

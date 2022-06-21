@@ -9,8 +9,8 @@ class Inning {
   final int turn;
   late final AtBat atBat;
 
-  InningResult play(PitchingNumbers answerNumbers, BattingNumbers battingNumbers) {
-    atBat = AtBat(answerNumbers, battingNumbers);
+  InningResult play(PitchingNumbers pitchingNumbers, BattingNumbers battingNumbers) {
+    atBat = AtBat(pitchingNumbers, battingNumbers);
     return atBat.play();
   }
   
