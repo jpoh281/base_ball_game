@@ -11,9 +11,11 @@ class BaseBall {
   late AnswerNumbers answerNumbers;
   List<Inning> innings = [];
 
+  int get nowTurn => innings.length + 1;
+
   bool get isGameOver => innings.length == maxTurn;
 
-  void settingGame() {
+  void setGame() {
     innings = [];
     answerNumbers = AnswerNumbers.setNumbers();
   }
