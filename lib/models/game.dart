@@ -11,15 +11,17 @@ class BaseBall {
   late AnswerNumbers answerNumbers;
   List<Inning> innings = [];
 
+  int get nowInning => innings.length + 1;
+
   bool get isGameOver => innings.length == maxTurn;
 
-  void settingGame() {
+  void setGame() {
     innings = [];
     answerNumbers = AnswerNumbers.setNumbers();
   }
 
   InningResult playInning(BattingNumbers battingNumbers) {
-    var inning = Inning(innings.length + 1);
+    var inning = Inning(nowInning);
     innings.add(inning);
     return inning.play(answerNumbers, battingNumbers);
   }
