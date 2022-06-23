@@ -18,14 +18,18 @@ class AtBat {
   }
 
   void _swing(int i) {
-    if (pitching.numbers[i] == batting.numbers[i]) {
+    if (_isStrike(i)) {
       battingResult.addStrike();
       return;
     }
-    if (pitching.numbers.contains(batting.numbers[i])) {
+    if (_isBall(i)) {
       battingResult.addBall();
     }
   }
+
+  _isStrike(i) => pitching.numbers[i] == batting.numbers[i];
+
+  _isBall(i) => pitching.numbers.contains(batting.numbers[i]);
 
   @override
   String toString() {
