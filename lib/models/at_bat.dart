@@ -19,11 +19,11 @@ class AtBat {
 
   void _swing(int i) {
     if (pitching.numbers[i] == batting.numbers[i]) {
-      battingResult.strikes++;
+      battingResult.addStrike();
       return;
     }
     if (pitching.numbers.contains(batting.numbers[i])) {
-      battingResult.balls++;
+      battingResult.addBall();
     }
   }
 
