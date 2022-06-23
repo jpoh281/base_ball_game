@@ -4,10 +4,10 @@ import 'package:base_ball_game/models/batting_numbers.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 
 class AtBat {
-  AtBat(this.pitching, this.batting);
+  AtBat(this.pitchingNumbers, this.battingNumbers);
 
-  final PitchingNumbers pitching;
-  final BattingNumbers batting;
+  final PitchingNumbers pitchingNumbers;
+  final BattingNumbers battingNumbers;
   final InningResult battingResult = InningResult();
 
   InningResult play() {
@@ -27,12 +27,12 @@ class AtBat {
     }
   }
 
-  _isStrike(i) => pitching.ofIndex(i) == batting.ofIndex(i);
+  _isStrike(i) => pitchingNumbers.ofIndex(i) == battingNumbers.ofIndex(i);
 
-  _isBall(i) => pitching.hasBall(batting.ofIndex(i));
+  _isBall(i) => pitchingNumbers.hasBall(battingNumbers.ofIndex(i));
 
   @override
   String toString() {
-    return '유저 작성 답: $batting 결과: $battingResult';
+    return '유저 작성 답: $battingNumbers 결과: $battingResult';
   }
 }
