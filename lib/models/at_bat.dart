@@ -11,7 +11,7 @@ class AtBat {
   final InningResult battingResult = InningResult();
 
   InningResult play() {
-    for (int i = 0; i < batCount; i++) {
+    for (int i = 0; i < maxBat; i++) {
       _swing(i);
     }
     return battingResult;

@@ -13,7 +13,7 @@ class BaseBall {
 
   int get nowInning => innings.length + 1;
 
-  bool get isGameOver => innings.length == maxTurn;
+  bool get isGameOver => innings.length == maxInning;
 
   void setGame() {
     innings = [];

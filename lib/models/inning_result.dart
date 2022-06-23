@@ -1,3 +1,5 @@
+import 'package:base_ball_game/constants.dart';
+
 class InningResult {
   InningResult();
 
@@ -12,7 +14,7 @@ class InningResult {
 
   bool get isStrikeAndBall => _strikes != 0 && _balls != 0;
 
-  bool get isWin => _strikes == 3;
+  bool get isWin => _strikes == maxBat;
 
   addStrike(){
     _strikes++;

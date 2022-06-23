@@ -7,13 +7,13 @@ class BattingNumbers {
 
   factory BattingNumbers.fromStdOut(String? answer) {
     var regExpResult = rule.allMatches(answer ?? '');
-    if (regExpResult.length != 3) {
+    if (regExpResult.length != maxBat) {
       throw FormatException('숫자를 세개만 입력해 주세요.\n');
     }
 
     var numbers =
         regExpResult.map((e) => int.parse(e.group(0).toString())).toList();
-    if (numbers.toSet().length != 3) {
+    if (numbers.toSet().length != maxBat) {
       throw FormatException('중복되는 숫자없이 입력해 주세요.\n');
     }
 
