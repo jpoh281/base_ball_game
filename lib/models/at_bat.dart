@@ -27,12 +27,12 @@ class AtBat {
     }
   }
 
-  _isStrike(i) => pitching.numbers[i] == batting.numbers[i];
+  _isStrike(i) => pitching.ofIndex(i) == batting.ofIndex(i);
 
-  _isBall(i) => pitching.numbers.contains(batting.numbers[i]);
+  _isBall(i) => pitching.hasBall(batting.ofIndex(i));
 
   @override
   String toString() {
-    return '유저 작성 답: ${batting.numbers.join()} 결과: $battingResult';
+    return '유저 작성 답: $batting 결과: $battingResult';
   }
 }

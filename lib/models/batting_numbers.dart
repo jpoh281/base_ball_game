@@ -1,9 +1,9 @@
 import 'package:base_ball_game/constants.dart';
 
 class BattingNumbers {
-  BattingNumbers(this.numbers);
+  BattingNumbers(this._numbers);
 
-  final List<int> numbers;
+  final List<int> _numbers;
 
   factory BattingNumbers.fromStdOut(String? answer) {
     var regExpResult = rule.allMatches(answer ?? '');
@@ -18,5 +18,12 @@ class BattingNumbers {
     }
 
     return BattingNumbers(numbers);
+  }
+
+  int ofIndex(int i) => _numbers[i];
+
+  @override
+  String toString() {
+    return _numbers.join();
   }
 }

@@ -1,9 +1,9 @@
 import 'package:base_ball_game/constants.dart';
 
 class PitchingNumbers {
-  PitchingNumbers(this.numbers);
+  PitchingNumbers(this._numbers);
 
-  final List<int> numbers;
+  final List<int> _numbers;
 
   factory PitchingNumbers.setNumbers() {
     List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -16,4 +16,8 @@ class PitchingNumbers {
 
     return PitchingNumbers(answers);
   }
+
+  int ofIndex(int i) => _numbers[i];
+
+  bool hasBall(int numberOfIndex) => _numbers.contains(numberOfIndex);
 }
