@@ -22,6 +22,7 @@ class AtBat {
       battingResult.addStrike();
       return;
     }
+
     if (_isBall(i)) {
       battingResult.addBall();
     }
