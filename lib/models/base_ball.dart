@@ -8,26 +8,26 @@ class BaseBall {
   BaseBall();
 
   // 현재 게임의 정답
-  late PitchingNumbers pitchingNumbers;
-  List<Inning> innings = [];
+  late PitchingNumbers _pitchingNumbers;
+  List<Inning> _innings = [];
 
-  int get nowInning => innings.length + 1;
+  int get nowInning => _innings.length + 1;
 
-  bool get isGameOver => innings.length == maxInning;
+  bool get isGameOver => _innings.length == maxInning;
 
   void setGame() {
-    innings = [];
-    pitchingNumbers = PitchingNumbers.setNumbers();
+    _innings = [];
+    _pitchingNumbers = PitchingNumbers.setNumbers();
   }
 
   InningResult playInning(BattingNumbers battingNumbers) {
     var inning = Inning(nowInning);
-    innings.add(inning);
-    return inning.play(pitchingNumbers, battingNumbers);
+    _innings.add(inning);
+    return inning.play(_pitchingNumbers, battingNumbers);
   }
 
   @override
   String toString() {
-    return innings.join();
+    return _innings.join();
   }
 }
