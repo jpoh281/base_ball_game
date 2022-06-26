@@ -1,14 +1,14 @@
 import 'package:base_ball_game/constants.dart';
 
-class BattingNumbers {
-  BattingNumbers(this._numbers);
+class Pitcher {
+  Pitcher(this._numbers);
 
   final List<int> _numbers;
 
-  factory BattingNumbers.fromStdOut(String? answer) {
-    var regExpResult = rule.allMatches(answer ?? '');
+  factory Pitcher.pitchSelection(String? answer) {
+    var regExpResult = digitExceptZero.allMatches(answer ?? '');
     if (regExpResult.length != maxBat) {
-      throw FormatException('숫자를 세개만 입력해 주세요.\n');
+      throw FormatException('숫자를 $maxBat개만 입력해 주세요.\n');
     }
 
     var numbers =
@@ -17,10 +17,13 @@ class BattingNumbers {
       throw FormatException('중복되는 숫자없이 입력해 주세요.\n');
     }
 
-    return BattingNumbers(numbers);
+    return Pitcher(numbers);
   }
 
-  int ofIndex(int i) => _numbers[i];
+  int pitch() =>
+      _numbers.iterator.current;
+
+  bool canPitch() => _numbers.iterator.moveNext();
 
   @override
   String toString() {
