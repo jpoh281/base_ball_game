@@ -16,11 +16,6 @@ class BaseBall {
 
   bool get isGameOver => _innings.length == maxInning;
 
-
-  void setBetter(){
-
-  }
-
   void setGame(Batter batter) {
     _innings = [];
     _batter = batter;
