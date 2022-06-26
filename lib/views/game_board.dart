@@ -1,6 +1,8 @@
 import 'dart:io';
-import 'package:base_ball_game/models/batting_numbers.dart';
+import 'package:base_ball_game/constants.dart';
 import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/pitcher.dart';
+import 'package:base_ball_game/models/ball_count.dart';
 import 'package:base_ball_game/models/base_ball.dart';
 
 class GameBoard {
@@ -8,10 +10,10 @@ class GameBoard {
 
   void initializeGame() {
     stdout.write('*** HDD의 숫자 야구 ***\n');
-    stdout.write('시작하려면 아무 키나 입력해 주세요.\n');
-    stdin.readLineSync();
+  }
 
-    stdout.write('숫자가 설정 되었습니다.\n');
+  String? getMaxInngings(){
+    stdout.write('최대 이닝을 입력해주세요.\n');
   }
 
   String? askRestart() {
@@ -19,14 +21,14 @@ class GameBoard {
     return stdin.readLineSync();
   }
 
-  BattingNumbers getAnswer() {
-    BattingNumbers? atBat;
+  Pitcher getAnswer() {
+    Pitcher? atBat;
     do {
-      stdout.write('숫자 3개를 입력해주세요.\n');
+      stdout.write('숫자 $maxBat개를 입력해주세요.\n');
       stdout.write('0 및 공백, 영문자, 특수문자는 전부 무시됩니다.\n');
       var answer = stdin.readLineSync();
       try {
-        atBat = BattingNumbers.fromStdOut(answer);
+        atBat = Pitcher.pitchSelection(answer);
       } on FormatException catch (e) {
         stdout.write(e.message);
       }

@@ -1,22 +1,24 @@
-import 'package:base_ball_game/models/pitching_numbers.dart';
-import 'package:base_ball_game/models/at_bat.dart';
-import 'package:base_ball_game/models/batting_numbers.dart';
+import 'package:base_ball_game/models/batter.dart';
 import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/plate_appearance.dart';
+import 'package:base_ball_game/models/pitcher.dart';
+import 'package:base_ball_game/models/ball_count.dart';
 
 class Inning {
-  Inning(this.turn);
+  Inning(this._turn, this.plateAppearance);
 
-  final int turn;
-  late final AtBat atBat;
+  final int _turn;
+  final PlateAppearance plateAppearance;
+  late final InningResult _inningResult;
 
-  InningResult play(PitchingNumbers pitchingNumbers, BattingNumbers battingNumbers) {
-    atBat = AtBat(pitchingNumbers, battingNumbers);
-    return atBat.play();
+  InningResult play() {
+    var ballCount = plateAppearance.compete();
+    _inningResult = ballCount.toResult();
+    return _inningResult;
   }
-  
 
   @override
   String toString() {
-    return '$turn턴 $atBat';
+    return '$_turn턴 $plateAppearance 결과 $_inningResult';
   }
 }
