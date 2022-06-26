@@ -20,10 +20,7 @@ class Pitcher {
     return Pitcher(numbers);
   }
 
-  int pitch() =>
-      _numbers.iterator.current;
-
-  bool canPitch() => _numbers.iterator.moveNext();
+  int pitch(int i) => _numbers[i];
 
   @override
   String toString() {

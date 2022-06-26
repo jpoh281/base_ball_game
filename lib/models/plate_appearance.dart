@@ -1,3 +1,4 @@
+import 'package:base_ball_game/constants.dart';
 import 'package:base_ball_game/models/batter.dart';
 import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/ball_count.dart';
@@ -11,21 +12,28 @@ class PlateAppearance {
 
   BallCount compete() {
     final BallCount ballCount = BallCount();
-    while (batter.hasBallCount() && pitcher.canPitch()) {
-      judgement(ballCount);
+
+    for(int i = 0; i < maxBat; i++){
+      judgement(i, ballCount);
     }
 
     return ballCount;
   }
 
-  void judgement(BallCount ballCount) {
-    var pitchingBall = pitcher.pitch();
-    if (batter.didMissSwing(pitchingBall)) {
+  void judgement(int index, BallCount ballCount) {
+    var pitchingBall = pitcher.pitch(index);
+    if (batter.didMissSwing(index, pitchingBall)) {
       ballCount.addStrike();
+      return ;
     }
 
     if (batter.didLook(pitchingBall)) {
       ballCount.addBall();
     }
+  }
+
+  @override
+  String toString() {
+    return '투수: $pitcher, 타자: $batter';
   }
 }

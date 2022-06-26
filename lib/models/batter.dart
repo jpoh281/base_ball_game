@@ -14,15 +14,16 @@ class Batter {
     while (selectedNumbers.length < maxBat) {
       selectedNumbers.add(numbers.removeAt(0));
     }
-
-    selectedNumbers.iterator.current;
     return Batter(selectedNumbers);
   }
 
-  bool didMissSwing(int pitchingBall) =>
-      _numbers.iterator.current == pitchingBall;
+  bool didMissSwing(int index, int pitchingBall) =>
+      _numbers[index] == pitchingBall;
 
   bool didLook(int pitchingBall) => _numbers.contains(pitchingBall);
 
-  bool hasBallCount() => _numbers.iterator.moveNext();
+  @override
+  String toString() {
+    return _numbers.join();
+  }
 }
