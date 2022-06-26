@@ -3,7 +3,7 @@ import 'package:base_ball_game/models/batter.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/inning.dart';
-import 'package:base_ball_game/models/plate_appearance.dart';
+import 'package:base_ball_game/models/mound.dart';
 
 class BaseBall {
   BaseBall();
@@ -22,7 +22,7 @@ class BaseBall {
   }
 
   InningResult playInning(Pitcher pitcher) {
-    var plateAppearance = PlateAppearance(_batter, pitcher);
+    var plateAppearance = Mound(_batter, pitcher);
 
     var inning = Inning(nowInning, plateAppearance);
     _innings.add(inning);

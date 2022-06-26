@@ -4,8 +4,8 @@ import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/ball_count.dart';
 
 /// 타석
-class PlateAppearance {
-  PlateAppearance(this.batter, this.pitcher);
+class Mound {
+  Mound(this.batter, this.pitcher);
 
   final Batter batter;
   final Pitcher pitcher;
