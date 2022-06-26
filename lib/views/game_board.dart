@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:base_ball_game/constants.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/pitcher.dart';
-import 'package:base_ball_game/models/ball_count.dart';
 import 'package:base_ball_game/models/base_ball.dart';
 
 class GameBoard {

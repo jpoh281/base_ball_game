@@ -19,6 +19,6 @@ class Inning {
 
   @override
   String toString() {
-    return '$_turn턴 $plateAppearance 결과 $_inningResult';
+    return '${_turn.toString().padLeft(2,'0')}이닝 $plateAppearance 결과 $_inningResult';
   }
 }
