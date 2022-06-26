@@ -1,7 +1,9 @@
 import 'package:base_ball_game/models/ball_count.dart';
+import 'package:base_ball_game/models/ball_mix.dart';
 import 'package:base_ball_game/models/base_ball.dart';
 import 'package:base_ball_game/models/batter.dart';
 import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/views/game_board.dart';
 
 class BaseBallGameController {
@@ -14,7 +16,11 @@ class BaseBallGameController {
     board.initializeGame();
     late String? result;
     do {
-      game.setGame(Batter.warmUp());
+      game.setGame(
+        Batter(
+          BallMix.battersWeakness(),
+        ),
+      );
       _playGame();
       result = board.askRestart();
     } while (result == 'y');
@@ -37,7 +43,7 @@ class BaseBallGameController {
   }
 
   InningResult _playInning() {
-    var atBat = board.getAnswer();
-    return game.playInning(atBat);
+    var ballMix = board.selectBallMix();
+    return game.playInning(Pitcher(ballMix));
   }
 }

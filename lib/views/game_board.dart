@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/ball_mix.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/base_ball.dart';
@@ -20,19 +21,19 @@ class GameBoard {
     return stdin.readLineSync();
   }
 
-  Pitcher getAnswer() {
-    Pitcher? atBat;
+  BallMix selectBallMix() {
+    BallMix? ballMix;
     do {
       stdout.write('숫자 $maxBat개를 입력해주세요.\n');
       stdout.write('0 및 공백, 영문자, 특수문자는 전부 무시됩니다.\n');
       var answer = stdin.readLineSync();
       try {
-        atBat = Pitcher.pitchSelection(answer);
+        ballMix = BallMix.pitcher(answer);
       } on FormatException catch (e) {
         stdout.write(e.message);
       }
-    } while (atBat == null);
-    return atBat;
+    } while (ballMix == null);
+    return ballMix;
   }
 
   void printGameOver() {

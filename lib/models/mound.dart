@@ -34,6 +34,6 @@ class Mound {
 
   @override
   String toString() {
-    return '투수: $pitcher, 타자: $batter';
+    return '$pitcher $batter';
   }
 }

@@ -5,20 +5,20 @@ import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/ball_count.dart';
 
 class Inning {
-  Inning(this._turn, this.plateAppearance);
+  Inning(this._turn, this._mound);
 
   final int _turn;
-  final Mound plateAppearance;
+  final Mound _mound;
   late final InningResult _inningResult;
 
   InningResult play() {
-    var ballCount = plateAppearance.compete();
+    var ballCount = _mound.compete();
     _inningResult = ballCount.toResult();
     return _inningResult;
   }
 
   @override
   String toString() {
-    return '${_turn.toString().padLeft(2,'0')}이닝 $plateAppearance 결과 $_inningResult';
+    return '${_turn.toString().padLeft(2,'0')}이닝 $_mound 결과 $_inningResult';
   }
 }
