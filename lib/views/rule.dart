@@ -1,13 +1,11 @@
-class Rule {
+class RuleValidator {
   // 숫자의 수
-  static late final int numberOfBat;
-  static late final int maxInning;
 
   static RegExp batRegExp = RegExp('[1-9]{1}');
   static RegExp numberOfBatRegExp = RegExp('^[1-9]{1}\$');
   static RegExp inningsRegExp = RegExp('[1-9]{1}\\d*');
 
-  Rule._();
+  RuleValidator._();
 
   static int parseMaxInning(String? answer) {
     var regExpResult = inningsRegExp.allMatches(answer ?? '').toList();

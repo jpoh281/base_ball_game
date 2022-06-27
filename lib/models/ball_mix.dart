@@ -1,6 +1,9 @@
-import 'package:base_ball_game/models/rule.dart';
+import 'package:base_ball_game/views/rule.dart';
 
 class BallMix {
+
+  static late final int numberOfBat;
+
   final List<int> _numbers;
 
   BallMix(this._numbers);
@@ -11,7 +14,7 @@ class BallMix {
 
     List<int> selectedNumbers = [];
 
-    while (selectedNumbers.length < Rule.numberOfBat) {
+    while (selectedNumbers.length < numberOfBat) {
       selectedNumbers.add(numbers.removeAt(0));
     }
 
@@ -19,14 +22,14 @@ class BallMix {
   }
 
   factory BallMix.fromUser(String? answer) {
-    var regExpResult = Rule.batRegExp.allMatches(answer ?? '');
-    if (regExpResult.length != Rule.numberOfBat) {
-      throw FormatException('숫자를 ${Rule.numberOfBat}개만 입력해 주세요.\n');
+    var regExpResult = RuleValidator.batRegExp.allMatches(answer ?? '');
+    if (regExpResult.length != numberOfBat) {
+      throw FormatException('숫자를 $numberOfBat개만 입력해 주세요.\n');
     }
 
     var numbers =
         regExpResult.map((e) => int.parse(e.group(0).toString())).toList();
-    if (numbers.toSet().length != Rule.numberOfBat) {
+    if (numbers.toSet().length != numberOfBat) {
       throw FormatException('중복되는 숫자없이 입력해 주세요.\n');
     }
 

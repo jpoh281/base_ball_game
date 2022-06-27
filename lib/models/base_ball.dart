@@ -4,7 +4,6 @@ import 'package:base_ball_game/models/innings.dart';
 import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/inning.dart';
 import 'package:base_ball_game/models/mound.dart';
-import 'package:base_ball_game/models/rule.dart';
 
 class BaseBall {
   BaseBall();
@@ -16,7 +15,7 @@ class BaseBall {
   bool get isGameOver => _innings.isFull;
 
   void setGame(Batter batter) {
-    _innings = Innings(Rule.maxInning);
+    _innings = Innings();
     _batter = batter;
   }
 

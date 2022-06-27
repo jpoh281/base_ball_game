@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:base_ball_game/models/ball_mix.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/base_ball.dart';
-import 'package:base_ball_game/models/rule.dart';
+import 'package:base_ball_game/models/innings.dart';
+import 'package:base_ball_game/views/rule.dart';
 
 class GameBoard {
   const GameBoard();
@@ -19,12 +20,12 @@ class GameBoard {
     int? maxInning;
     do {
       try{
-        maxInning = Rule.parseMaxInning(stdin.readLineSync());
+        maxInning = RuleValidator.parseMaxInning(stdin.readLineSync());
       } on FormatException catch(e){
         stdout.write(e.message);
       }
     } while (maxInning == null);
-    Rule.maxInning = maxInning;
+    Innings.maxInning = maxInning;
   }
 
   String? askRestart() {
@@ -37,18 +38,18 @@ class GameBoard {
     int? numberOfBat;
     do {
       try{
-        numberOfBat = Rule.parseNumberOfBat(stdin.readLineSync());
+        numberOfBat = RuleValidator.parseNumberOfBat(stdin.readLineSync());
       } on FormatException catch(e){
         stdout.write(e.message);
       }
     } while (numberOfBat == null);
-    Rule.numberOfBat = numberOfBat;
+    BallMix.numberOfBat = numberOfBat;
   }
 
   BallMix selectBallMix() {
     BallMix? ballMix;
     do {
-      stdout.write('숫자 ${Rule.numberOfBat}개를 입력해주세요.\n');
+      stdout.write('숫자 ${BallMix.numberOfBat}개를 입력해주세요.\n');
       stdout.write('0 및 공백, 영문자, 특수문자는 전부 무시됩니다.\n');
       var answer = stdin.readLineSync();
       try {

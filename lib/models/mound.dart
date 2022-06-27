@@ -1,7 +1,7 @@
+import 'package:base_ball_game/models/ball_mix.dart';
 import 'package:base_ball_game/models/batter.dart';
 import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/ball_count.dart';
-import 'package:base_ball_game/models/rule.dart';
 
 /// 타석
 class Mound {
@@ -13,7 +13,7 @@ class Mound {
   BallCount compete() {
     final BallCount ballCount = BallCount();
 
-    for(int i = 0; i < Rule.numberOfBat; i++){
+    for(int i = 0; i < BallMix.numberOfBat; i++){
       judgement(i, ballCount);
     }
 
