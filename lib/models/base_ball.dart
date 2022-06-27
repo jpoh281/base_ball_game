@@ -1,4 +1,3 @@
-import 'package:base_ball_game/constants.dart';
 import 'package:base_ball_game/models/batter.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/innings.dart';
@@ -13,10 +12,10 @@ class BaseBall {
   late Batter _batter;
   late Innings _innings;
 
-  bool get isGameOver => _innings.length == maxInning;
+  bool get isGameOver => _innings.isFull;
 
   void setGame(Batter batter) {
-    _innings = Innings();
+    _innings.reset();
     _batter = batter;
   }
 
