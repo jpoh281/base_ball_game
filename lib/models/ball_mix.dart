@@ -1,32 +1,32 @@
-import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/rule.dart';
 
 class BallMix {
   final List<int> _numbers;
 
   BallMix(this._numbers);
 
-  factory BallMix.battersWeakness() {
+  factory BallMix.autoGenerate() {
     List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     numbers.shuffle();
 
     List<int> selectedNumbers = [];
 
-    while (selectedNumbers.length < maxBat) {
+    while (selectedNumbers.length < Rule.numberOfBat) {
       selectedNumbers.add(numbers.removeAt(0));
     }
 
     return BallMix(selectedNumbers);
   }
 
-  factory BallMix.pitcher(String? answer) {
-    var regExpResult = digitExceptZero.allMatches(answer ?? '');
-    if (regExpResult.length != maxBat) {
-      throw FormatException('숫자를 $maxBat개만 입력해 주세요.\n');
+  factory BallMix.fromUser(String? answer) {
+    var regExpResult = Rule.batRegExp.allMatches(answer ?? '');
+    if (regExpResult.length != Rule.numberOfBat) {
+      throw FormatException('숫자를 ${Rule.numberOfBat}개만 입력해 주세요.\n');
     }
 
     var numbers =
         regExpResult.map((e) => int.parse(e.group(0).toString())).toList();
-    if (numbers.toSet().length != maxBat) {
+    if (numbers.toSet().length != Rule.numberOfBat) {
       throw FormatException('중복되는 숫자없이 입력해 주세요.\n');
     }
 

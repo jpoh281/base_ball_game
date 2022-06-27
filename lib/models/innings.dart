@@ -1,4 +1,5 @@
 import 'package:base_ball_game/models/inning.dart';
+import 'package:base_ball_game/models/rule.dart';
 
 class Innings {
 
@@ -10,7 +11,7 @@ class Innings {
 
   int get nowInning => _innings.length + 1;
 
-  bool get isFull => _innings.length == maxInning;
+  bool get isFull => _innings.length == Rule.maxInning;
 
   void add(Inning inning){
     _innings.add(inning);

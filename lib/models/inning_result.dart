@@ -1,4 +1,4 @@
-import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/rule.dart';
 
 class InningResult {
   final int _strikes;
@@ -14,7 +14,7 @@ class InningResult {
 
   bool get isStrikeAndBall => _strikes != 0 && _balls != 0;
 
-  bool get isWin => _strikes == maxBat;
+  bool get isWin => _strikes == Rule.numberOfBat;
 
   @override
   String toString() {

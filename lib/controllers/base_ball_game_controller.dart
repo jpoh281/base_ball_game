@@ -1,4 +1,3 @@
-import 'package:base_ball_game/models/ball_count.dart';
 import 'package:base_ball_game/models/ball_mix.dart';
 import 'package:base_ball_game/models/base_ball.dart';
 import 'package:base_ball_game/models/batter.dart';
@@ -18,7 +17,7 @@ class BaseBallGameController {
     do {
       game.setGame(
         Batter(
-          BallMix.battersWeakness(),
+          BallMix.autoGenerate(),
         ),
       );
       _playGame();
