@@ -1,9 +1,9 @@
 import 'package:base_ball_game/models/ball_mix.dart';
 
 class Pitcher {
-  const Pitcher(this.ballMix);
-
   final BallMix ballMix;
+
+  const Pitcher(this.ballMix);
 
   int pitch(int i) => ballMix.ofIndex(i);
 

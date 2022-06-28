@@ -1,7 +1,6 @@
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/mound.dart';
 
-
 class Inning {
   Inning(this._turn, this._mound);
 
@@ -17,6 +16,6 @@ class Inning {
 
   @override
   String toString() {
-    return '${_turn.toString().padLeft(2,'0')}이닝 $_mound 결과 $_inningResult';
+    return '${_turn.toString().padLeft(2, '0')}이닝 $_mound 결과 $_inningResult';
   }
 }

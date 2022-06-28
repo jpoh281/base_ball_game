@@ -2,7 +2,7 @@ import 'package:base_ball_game/models/ball_mix.dart';
 
 class Batter {
 
-  Batter(this.weakness);
+  const Batter(this.weakness);
 
   final BallMix weakness;
 
