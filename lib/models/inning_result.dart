@@ -1,21 +1,16 @@
-import 'package:base_ball_game/models/ball_mix.dart';
-import 'package:base_ball_game/views/rule.dart';
-
 class InningResult {
-  final int _strikes;
+  final int strikes;
   final int _balls;
 
-  InningResult(this._strikes, this._balls);
+  InningResult(this.strikes, this._balls);
 
-  bool get isOut => _strikes == 0 && _balls == 0;
+  bool get isOut => strikes == 0 && _balls == 0;
 
-  bool get isStrike => _strikes != 0 && _balls == 0;
+  bool get isStrike => strikes != 0 && _balls == 0;
 
-  bool get isBall => _strikes == 0 && _balls != 0;
+  bool get isBall => strikes == 0 && _balls != 0;
 
-  bool get isStrikeAndBall => _strikes != 0 && _balls != 0;
-
-  bool get isWin => _strikes == BallMix.numberOfBat;
+  bool get isStrikeAndBall => strikes != 0 && _balls != 0;
 
   @override
   String toString() {
@@ -24,11 +19,11 @@ class InningResult {
     }
 
     if (isStrike) {
-      return '$_strikes 스트라이크\n';
+      return '$strikes 스트라이크\n';
     }
 
     if (isStrikeAndBall) {
-      return '$_strikes 스트라이크 $_balls 볼\n';
+      return '$strikes 스트라이크 $_balls 볼\n';
     }
 
     return '아웃\n';

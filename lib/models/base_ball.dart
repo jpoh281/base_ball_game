@@ -1,28 +1,32 @@
 import 'package:base_ball_game/models/batter.dart';
 import 'package:base_ball_game/models/inning_result.dart';
 import 'package:base_ball_game/models/innings.dart';
+import 'package:base_ball_game/models/now_inning.dart';
 import 'package:base_ball_game/models/pitcher.dart';
 import 'package:base_ball_game/models/inning.dart';
 import 'package:base_ball_game/models/mound.dart';
+import 'package:base_ball_game/models/rules/game_options.dart';
 
-class BaseBall {
-  BaseBall();
+class BaseBallGame {
+  BaseBallGame(this.nowInning);
 
-  // 현재 게임의 정답
+  final NowInning nowInning;
+
+  late GameOption _gameOption;
   late Batter _batter;
   late Innings _innings;
 
-  bool get isGameOver => _innings.isFull;
-
-  void setGame(Batter batter) {
-    _innings = Innings();
+  void setGame(Batter batter, GameOption gameOption, [Innings? innings]) {
     _batter = batter;
+    _gameOption = gameOption;
+    _innings = innings ?? Innings();
+    nowInning.reset();
   }
 
   InningResult playInning(Pitcher pitcher) {
-    var plateAppearance = Mound(_batter, pitcher);
+    var plateAppearance = Mound(_batter, pitcher, _gameOption.numberOfBat);
 
-    var inning = Inning(_innings.nowInning, plateAppearance);
+    var inning = Inning(nowInning.value, plateAppearance);
     _innings.add(inning);
 
     return inning.play();
