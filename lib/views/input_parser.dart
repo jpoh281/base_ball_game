@@ -4,7 +4,7 @@ class InputParser {
   final RegExp _numberOfBatRegExp = RegExp('^[1-9]{1}\$');
   final RegExp _maxInningRegExp = RegExp('[1-9]{1}\\d*');
 
-  List<int> parseToIntList(String input, int numberOfBat) {
+  List<int> parseToIntList(String? input, int numberOfBat) {
     var regExpResult = _batRegExp.allMatches(input ?? '');
 
     if (regExpResult.length != numberOfBat) {
@@ -21,7 +21,7 @@ class InputParser {
     return numbers;
   }
 
-  int parseToNumberOfBat(String input) {
+  int parseToNumberOfBat(String? input) {
     var regExpResult = _numberOfBatRegExp.allMatches(input ?? '').toList();
 
     if (regExpResult.isEmpty) {
@@ -31,7 +31,7 @@ class InputParser {
     return int.parse(regExpResult[0].group(0)!);
   }
 
-  int parseToMaxInning(String input) {
+  int parseToMaxInning(String? input) {
     var regExpResult = _maxInningRegExp.allMatches(input ?? '').toList();
 
     if (regExpResult.isEmpty) {
