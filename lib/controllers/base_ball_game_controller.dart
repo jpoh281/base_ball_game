@@ -1,41 +1,63 @@
-import 'package:base_ball_game/models/game.dart';
-import 'package:base_ball_game/models/inning.dart';
+import 'package:base_ball_game/models/ball_mix.dart';
+import 'package:base_ball_game/models/base_ball.dart';
+import 'package:base_ball_game/models/batter.dart';
+import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/now_inning.dart';
+import 'package:base_ball_game/models/pitcher.dart';
+import 'package:base_ball_game/models/rules/game_options.dart';
 import 'package:base_ball_game/views/game_board.dart';
 
 class BaseBallGameController {
-  BaseBallGameController();
+  final GameBoard _board;
+  final BaseBallGame _baseBallGame;
+  final NowInning _nowInning;
+  GameOption _gameOption;
 
-  final GameBoard board = GameBoard();
-  final Game game = Game();
+  BaseBallGameController(
+      this._board, this._baseBallGame, this._gameOption, this._nowInning);
 
   void initialize() {
-    board.initializeGame();
+    _board.greet();
+    _setGameOption();
+
     late String? result;
     do {
-      game.settingGame();
+      _nowInning.reset();
+      _baseBallGame.setGame(
+        Batter(
+          BallMix.autoGenerate(_gameOption.numberOfBat,),
+        ),
+        _gameOption
+      );
       _playGame();
-      result = board.askRestart();
+      result = _board.askRestart();
     } while (result == 'y');
   }
 
-  void _playGame() {
-    Inning? inningResult;
-    do {
-      inningResult = _playInning();
-      board.printInningResult(inningResult);
-    } while (!game.isGameOver && !inningResult.isWin);
-
-    if(game.isGameOver){
-      board.printGameOver();
-    }
-
-    board.printGameResult(game.innings);
+  _setGameOption() {
+    _gameOption = _board.getOptionFromUser();
   }
 
-  Inning _playInning() {
-    var answer = board.getAnswer();
-    var inning = Inning(answer);
-    game.playInning(inning);
-    return inning;
+  void _playGame() {
+    late InningResult result;
+
+    do {
+      result = _playInning();
+      _board.printBattingResult(result);
+    } while (!_gameOption.isEnd(result, _nowInning));
+
+    if (_gameOption.isWin(result)) {
+      _board.printGameWin();
+    }
+    if (_gameOption.isLose(_nowInning)) {
+      _board.printGameOver();
+    }
+
+    _board.printGameResult(_baseBallGame);
+  }
+
+  InningResult _playInning() {
+    var ballMix = _board.getBallMix(_gameOption.numberOfBat);
+    return _baseBallGame.playInning(Pitcher(ballMix));
   }
 }

@@ -1,41 +1,21 @@
-import 'package:base_ball_game/constants.dart';
+import 'package:base_ball_game/models/inning_result.dart';
+import 'package:base_ball_game/models/mound.dart';
 
 class Inning {
-  Inning(this.atBat);
+  Inning(this._turn, this._mound);
 
-  final List<int> atBat;
+  final int _turn;
+  final Mound _mound;
+  late final InningResult _inningResult;
 
-  int strikes = 0;
-  int balls = 0;
-
-  bool get isOut => strikes == 0 && balls == 0;
-
-  bool get isStrike => strikes != 0 && balls == 0;
-
-  bool get isBall => strikes == 0 && balls != 0;
-
-  bool get isStrikeAndBall => strikes != 0 && balls != 0;
-
-  bool get isWin => strikes == 3;
-
-  playBatting(List<int> answers) {
-    for (int i = 0; i < batCount; i++) {
-      _check(answers, i);
-    }
-  }
-
-  void _check(List<int> answers, int i) {
-    if (answers[i] == atBat[i]) {
-      strikes++;
-      return;
-    }
-    if (answers.contains(atBat[i])) {
-      balls++;
-    }
+  InningResult play() {
+    var ballCount = _mound.compete();
+    _inningResult = ballCount.toResult();
+    return _inningResult;
   }
 
   @override
   String toString() {
-    return '작성 답: $atBat, 결과: $strikes 스트라이크 $balls 볼\n';
+    return '${_turn.toString().padLeft(2, '0')}이닝 $_mound 결과 $_inningResult';
   }
 }
